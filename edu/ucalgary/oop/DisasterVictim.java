@@ -11,6 +11,7 @@ public class DisasterVictim {
     private String dateOfBirth;
     private String comments;
     private int ASSIGNED_SOCIAL_ID;
+    private static int Id = 0;
     private List<MedicalRecord> medicalRecords;
     private List<FamilyRelation> familyConnections;
     private String ENTRY_DATE;
@@ -29,6 +30,7 @@ public class DisasterVictim {
         throw new IllegalArgumentException("Entry date must be in the format YYYY-MM-DD");
         }
         this.medicalRecords = new ArrayList<>();
+        this.ASSIGNED_SOCIAL_ID = ++Id;
         this.familyConnections = new ArrayList<>();
         this.personalBelongings = new ArrayList<>();
     }
