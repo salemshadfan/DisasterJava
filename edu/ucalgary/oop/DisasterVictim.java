@@ -2,19 +2,16 @@
 
 package edu.ucalgary.oop;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class DisasterVictim {
     private String firstName;
     private String lastName;
     private String dateOfBirth;
     private String comments;
     private int ASSIGNED_SOCIAL_ID;
-    private List<MedicalRecord> medicalRecords;
-    private List<FamilyRelation> familyConnections;
+    private MedicalRecord[] medicalRecords;
+    private FamilyRelation[] familyConnections;
     private String ENTRY_DATE;
-    private List<Supply> personalBelongings;
+    private Supply[] personalBelongings;
     private String gender;
     private static int counter = 0;
     private static final String regex = "\\d{4}-\\d{2}-\\d{2}";
@@ -28,10 +25,10 @@ public class DisasterVictim {
         else {
         throw new IllegalArgumentException("Entry date must be in the format YYYY-MM-DD");
         }
-        this.medicalRecords = new ArrayList<>();
+        this.medicalRecords = new MedicalRecord[10];
         this.ASSIGNED_SOCIAL_ID = ++counter;
-        this.familyConnections = new ArrayList<>();
-        this.personalBelongings = new ArrayList<>();
+        this.familyConnections = new FamilyRelation[10];
+        this.personalBelongings = new Supply[10];
     }
 
     // getters
@@ -47,7 +44,7 @@ public class DisasterVictim {
     public String getComments(){
         return this.comments;
     }
-    public List<MedicalRecord> getMedicalRecords(){
+    public MedicalRecord[] getMedicalRecords(){
         return this.medicalRecords;
     }
     public String getEntryDate(){
@@ -56,10 +53,10 @@ public class DisasterVictim {
     public int getAssignedSocialID(){
         return this.ASSIGNED_SOCIAL_ID;
     }
-    public List<Supply> getPersonalBelongings(){
+    public Supply[] getPersonalBelongings(){
         return personalBelongings;
     }
-    public List<FamilyRelation> getFamilyConnections(){
+    public FamilyRelation[] getFamilyConnections(){
         return this.familyConnections;
     }
     public String getGender(){
@@ -84,13 +81,13 @@ public class DisasterVictim {
     public void setComments(String comments){
         this.comments = comments;
     }
-    public void setMedicalRecords(List<MedicalRecord> medicalRecords){
+    public void setMedicalRecords(MedicalRecord[] medicalRecords){
         this.medicalRecords = medicalRecords;
     }
-    public void setPersonalBelongings(List<Supply> supplies){
+    public void setPersonalBelongings(Supply[] supplies){
         this.personalBelongings = supplies;
     }
-    public void setFamilyConnections(List<FamilyRelation> relation){
+    public void setFamilyConnections(FamilyRelation[] relation){
         this.familyConnections = relation;
     }
     public void setGender(String gender){
@@ -99,31 +96,47 @@ public class DisasterVictim {
     
     // setters/getters involving use of other classes
     public void addPersonalBelonging(Supply supply){
-        if (personalBelongings == null) {
-            personalBelongings = new ArrayList<>();
+        for (int i = 0; i < personalBelongings.length; i++) {
+            if (personalBelongings[i] == null) {
+                personalBelongings[i] = supply;
+                break;
+            }
         }
-        personalBelongings.add(supply);
     }
     public void removePersonalBelonging(Supply supply){
         if (personalBelongings != null) {
-            personalBelongings.remove(supply);
+            for (int i = 0; i < personalBelongings.length; i++) {
+                if (personalBelongings[i] != null && personalBelongings[i].equals(supply)) {
+                    personalBelongings[i] = null;
+                    break;
+                }
+            }
         }
     }
     public void addFamilyConnection(FamilyRelation familyConnection){
-        if (familyConnections == null) {
-            familyConnections = new ArrayList<FamilyRelation>();
+        for (int i = 0; i < familyConnections.length; i++) {
+            if (familyConnections[i] == null) {
+                familyConnections[i] = familyConnection;
+                break;
+            }
         }
-        familyConnections.add(familyConnection);
     }
     public void removeFamilyConnection(FamilyRelation familyConnection){
         if (familyConnections != null) {
-            familyConnections.remove(familyConnection);
+            for (int i = 0; i < familyConnections.length; i++) {
+                if (familyConnections[i] != null && familyConnections[i].equals(familyConnection)) {
+                    familyConnections[i] = null;
+                    break;
+                }
+            }
         }
     }
     public void addMedicalRecord(MedicalRecord medicalRecord){
-        if (medicalRecords == null) {
-            medicalRecords = new ArrayList<MedicalRecord>();
+        for (int i = 0; i < medicalRecords.length; i++) {
+            if (medicalRecords[i] == null) {
+                medicalRecords[i] = medicalRecord;
+                break;
+            }
         }
-        medicalRecords.add(medicalRecord);
     }
 }
