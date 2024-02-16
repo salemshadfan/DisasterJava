@@ -11,13 +11,12 @@ public class DisasterVictim {
     private String dateOfBirth;
     private String comments;
     private int ASSIGNED_SOCIAL_ID;
-    private static int Id = 0;
     private List<MedicalRecord> medicalRecords;
     private List<FamilyRelation> familyConnections;
     private String ENTRY_DATE;
     private List<Supply> personalBelongings;
     private String gender;
-    //private static int counter;
+    private static int counter = 0;
     private static final String regex = "\\d{4}-\\d{2}-\\d{2}";
 
     // Constructor
@@ -30,7 +29,7 @@ public class DisasterVictim {
         throw new IllegalArgumentException("Entry date must be in the format YYYY-MM-DD");
         }
         this.medicalRecords = new ArrayList<>();
-        this.ASSIGNED_SOCIAL_ID = ++Id;
+        this.ASSIGNED_SOCIAL_ID = ++counter;
         this.familyConnections = new ArrayList<>();
         this.personalBelongings = new ArrayList<>();
     }
