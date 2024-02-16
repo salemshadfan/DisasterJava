@@ -1,9 +1,8 @@
 // Location Code File
-import java.util.ArrayList;
 
 package edu.ucalgary.oop;
 
-
+import java.util.ArrayList;
 
 public class Location {
     private String name;

@@ -4,7 +4,6 @@ package edu.ucalgary.oop;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class DisasterVictim {
     private String firstName;
@@ -17,12 +16,21 @@ public class DisasterVictim {
     private String ENTRY_DATE;
     private List<Supply> personalBelongings;
     private String gender;
-    private static int counter;
+    //private static int counter;
+    private static final String regex = "\\d{4}-\\d{2}-\\d{2}";
 
     // Constructor
     public DisasterVictim(String firstName, String ENTRY_DATE){
         this.firstName = firstName;
-        this.ENTRY_DATE = ENTRY_DATE;
+        if (ENTRY_DATE.matches(regex)) {
+            this.ENTRY_DATE = ENTRY_DATE;
+        } 
+        else {
+        throw new IllegalArgumentException("Entry date must be in the format YYYY-MM-DD");
+        }
+        this.medicalRecords = new ArrayList<>();
+        this.familyConnections = new ArrayList<>();
+        this.personalBelongings = new ArrayList<>();
     }
 
     // getters
@@ -64,8 +72,13 @@ public class DisasterVictim {
     public void setLastName(String lastName){
         this.lastName = lastName;
     }
-    public void setDateOfBirth(String dateOfBirth){
-        this.dateOfBirth = dateOfBirth;
+    public void setDateOfBirth(String dateOfBirth) {
+        if (dateOfBirth.matches(regex)) {
+            this.dateOfBirth = dateOfBirth;
+        } 
+        else {
+        throw new IllegalArgumentException("Date of birth must be in the format YYYY-MM-DD");
+        }
     }
     public void setComments(String comments){
         this.comments = comments;
@@ -85,28 +98,31 @@ public class DisasterVictim {
     
     // setters/getters involving use of other classes
     public void addPersonalBelonging(Supply supply){
-
+        if (personalBelongings == null) {
+            personalBelongings = new ArrayList<>();
+        }
+        personalBelongings.add(supply);
     }
     public void removePersonalBelonging(Supply supply){
-
+        if (personalBelongings != null) {
+            personalBelongings.remove(supply);
+        }
     }
     public void addFamilyConnection(FamilyRelation familyConnection){
-
+        if (familyConnections == null) {
+            familyConnections = new ArrayList<FamilyRelation>();
+        }
+        familyConnections.add(familyConnection);
     }
     public void removeFamilyConnection(FamilyRelation familyConnection){
-
+        if (familyConnections != null) {
+            familyConnections.remove(familyConnection);
+        }
     }
     public void addMedicalRecord(MedicalRecord medicalRecord){
-
+        if (medicalRecords == null) {
+            medicalRecords = new ArrayList<MedicalRecord>();
+        }
+        medicalRecords.add(medicalRecord);
     }
-
-    // Functions to throw illeagal Argument Exceptions
-    public void DisasterVictim(String firstName, String ENTRY_DATE) throws IllegalArgumentException{
-
-    }
-
-    public void setDateOfBirth(String dateOfBirth) throws IllegalArgumentException{
-
-    }
-    
 }
