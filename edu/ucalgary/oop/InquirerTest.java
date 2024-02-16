@@ -62,7 +62,7 @@ testGetServicesPhoneNum**:
     @Test
     public void testGetServicesPhone() {
 
-        assertEquals("getServicesPhoneNum() should return the correct Services Number",expectedPhoneNumber, inquirer.getServicesPhoneNum());
+        assertEquals("getServicesPhone() should return the correct Services Number",expectedPhoneNumber, inquirer.getServicesPhone());
     }
 	
 /*
