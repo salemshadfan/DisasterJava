@@ -60,7 +60,7 @@ testGetServicesPhoneNum**:
    - Expected result: "inquirer.getServicesPhoneNum()" should return "+1-123-456-7890".
 */
     @Test
-    public void testGetServicesPhoneNum() {
+    public void testGetServicesPhone() {
 
         assertEquals("getServicesPhoneNum() should return the correct Services Number",expectedPhoneNumber, inquirer.getServicesPhoneNum());
     }
